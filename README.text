@@ -1,0 +1,19 @@
+Create React project
+-----------------------------------
+npx create-react-app app-name
+
+
+install axios
+-----------------------------------
+npm install axios
+
+
+install Material UI
+-----------------------------------
+npm install @mui/material @emotion/react @emotion/styled
+
+
+Start app
+-----------------------------------
+replace the src and public folder
+npm start

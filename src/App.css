@@ -1,0 +1,24 @@
+html, body{
+  margin: 0;
+  padding: 0;
+}
+*{
+  box-sizing: border-box;
+}
+.App {
+  background-color: #282c34;
+  height: 100vh;
+  font-family: 'Verdana';
+  color: #ffffff;
+}
+.container .label{
+  color: #ffffff;
+  font-size: 20px;
+  font-family: 'Verdana';
+}
+.container .select, .container [type='number'], .number{
+  border: 1px solid #ffffff;
+  width: 100%;
+  color: #ffffff !important;
+}
+
