@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Snack } from './component/snackbar';
 
 const CurrencyConverter = () => {
   const [loading, setLoading] = useState(false);
@@ -9,12 +10,18 @@ const CurrencyConverter = () => {
   const [targetCurrency, setTargetCurrency] = useState('INR');
   const [amount, setAmount] = useState(1);
   const [result, setResult] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const baseURL = "http://localhost:3000/";
   const options = ['USD', 'INR', 'EUR'];
 
   const handleConversion = (sourceCurrency, targetCurrency, amount) => {
     setLoading(true);
+    if(sourceCurrency === targetCurrency) {
+      setError('Source and Target Current type should not be same');
+      setOpen(true);
+      setLoading(false);
+    }
     axios.get(baseURL + "app/mockApi/exchangeRates.json?")
       .then(response => {
         const data = response.data;
@@ -52,6 +59,7 @@ const CurrencyConverter = () => {
           ))}
         </Select>
       </Grid>
+
       <Grid item xs={12} sm={6}>
         <InputLabel className='label'>Target Currency:</InputLabel>
         <Select className='select' value={targetCurrency} onChange={handleTargetCurrency}>
@@ -77,6 +85,8 @@ const CurrencyConverter = () => {
           Result: {loading && "Loading"} {!loading && !error && result}
         </p>
       </Grid>
+
+      <Snack open={open} setOpen={setOpen} error={error} />
     </Grid>
   );
 };
